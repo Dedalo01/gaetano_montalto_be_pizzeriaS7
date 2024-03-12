@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - Applicazione ASP.NET</title>
@@ -21,6 +21,21 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="ms-auto">
+                            @using (Html.BeginForm("Logout", "Auth"))
+                            {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-danger">Logout</button>
+                            }
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

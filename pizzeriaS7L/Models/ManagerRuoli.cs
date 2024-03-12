@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Linq;
 using System.Web.Security;
 
 namespace pizzeriaS7L.Models
 {
     public class ManagerRuoli : RoleProvider
     {
-        DbContext pizzeriaDB = new PizzeriaContext();
+        PizzeriaContext pizzeriaDB = new PizzeriaContext();
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -34,10 +34,12 @@ namespace pizzeriaS7L.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string userId)
         {
-            // int ruolo = pizzeriaDB.Utenti.Where(u => u.Id.ToString() == userId).FirstOrDefault().RuoloId;
-            throw new NotImplementedException();
+            string role = pizzeriaDB.Utenti.Where(utente => utente.Id.ToString() == userId).FirstOrDefault().Ruoli.Nome;
+            string[] roles = new string[] { role };
+
+            return roles;
         }
 
         public override string[] GetUsersInRole(string roleName)

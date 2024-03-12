@@ -1,10 +1,8 @@
 namespace pizzeriaS7L.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Articoli")]
     public partial class Articoli
@@ -14,7 +12,7 @@ namespace pizzeriaS7L.Models
         {
             OrdiniArticoli = new HashSet<OrdiniArticoli>();
         }
-
+        // ricorda di aggiungere key nel caso non funzioni nulla a tutti i model
         public int Id { get; set; }
 
         [Required]

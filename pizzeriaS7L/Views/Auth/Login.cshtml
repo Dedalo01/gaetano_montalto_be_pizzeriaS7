@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@model pizzeriaS7L.Models.Utenti
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(m => m.Email)
+    @Html.EditorFor(m => m.Email)
+    @Html.ValidationMessageFor(m => m.Email)
+    <br />
+    @Html.LabelFor(m => m.Username)
+    @Html.EditorFor(m => m.Username)
+    @Html.ValidationMessageFor(m => m.Username)
+    <br />
+    @Html.LabelFor(m => m.Password)
+    @Html.EditorFor(m => m.Password)
+    @Html.ValidationMessageFor(m => m.Password)
+
+    <button>Login</button>
+}
+
