@@ -1,16 +1,32 @@
 ﻿const menuToggle = document.querySelector(".menuToggle");
 const sidebar = document.querySelector(".sidebar");
 
+
 menuToggle.onclick = function () {
     menuToggle.classList.toggle("active");
     sidebar.classList.toggle("active");
 }
 
-const menuList = document.querySelectorAll(".menuList li")
+function activeLink(link) {
+    link.classList.remove("active");
+    const href = link.querySelector("a").getAttribute("href");
 
-function activeLink() {
-    menuList.forEach(li => li.classList.remove("active"))
-    this.classList.add("active")
+    if (currentUrl.includes(href)) {
+        link.classList.add("active");
+    }
 }
 
-menuList.forEach(li => li.addEventListener("click", activeLink))
+document.addEventListener("DOMContentLoaded", function () {
+    const currentUrl = window.location.href;
+    
+    const menuList = document.querySelectorAll(".menuList li")
+    menuList.forEach(function (link) {
+        link.classList.remove("active");
+
+        const href = link.querySelector("a").getAttribute("href");
+        console.log(href)
+        if (currentUrl.endsWith(href)) {
+            link.classList.add("active");
+        }
+    });
+});

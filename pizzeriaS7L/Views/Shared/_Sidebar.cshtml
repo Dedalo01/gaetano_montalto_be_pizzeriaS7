@@ -12,8 +12,8 @@
         </li>
 
         <div class="menuList">
-        <li style="--bg:#ffa117;" class="active">
-            <a href="#">
+        <li style="--bg:#ffa117;">
+            <a href="@Url.Action("Index", "Home")">
                 <div class="icon">
                     <ion-icon name="home-outline"></ion-icon>
                 </div>
@@ -22,7 +22,7 @@
         </li>
 
         <li style="--bg:#0fc70f;">
-            <a href="#">
+            <a href="@Url.Action("Shop","Shop")">
                 <div class="icon">
                     <ion-icon name="pricetags-outline"></ion-icon>
                 </div>
@@ -40,29 +40,43 @@
         </li>
 
         <div class="bottom">
-        <li style="--bg:#333;">
-            <a href="#">
-                <div class="icon">
-                    <ion-icon name="person-outline"></ion-icon>
-                </div>
-                @*<div class="imgBx">
-                    <img src="#" />
-                </div>*@
-                <div class="text">User</div>
-            </a>
-        </li>
+            @if (User.IsInRole("Admin"))
+            {
+            <li style="--bg:#333;">
+                <a href="@Url.Action("Index","Admin")">
+                    <div class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </div>
 
-        <li style="--bg:#333;">
-            <a href="#">
-                <div class="icon">
-                    <ion-icon name="log-out-outline"></ion-icon>
-                </div>
-                <div class="text">LOGOUT</div>
-            </a>
-        </li>
-</div>
-</div>
-       </ul>
+                    <div class="text">Admin</div>
+                </a>
+            </li>
+        }
+        else
+        {
+
+            <li style="--bg:#333;">
+                <a href="#">
+                    <div class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </div>
+
+                    <div class="text">User</div>
+                </a>
+            </li>
+        }
+
+            <li style="--bg:#333;">
+                <a href="#">
+                    <div class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </div>
+                    <div class="text">LOGOUT</div>
+                </a>
+            </li>
+    </div>
+    </div>
+    </ul>
     </div>
 
 

@@ -150,23 +150,6 @@ body {
     width: 100%;
 }
 
-.imgBx {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-    .imgBx img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
 .menuToggle {
     position: absolute;
     top: 20px;
