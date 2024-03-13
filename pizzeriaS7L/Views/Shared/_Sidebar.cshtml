@@ -1,6 +1,6 @@
 ﻿
 <div class="menuToggle"></div>
-<div class="sidebar">
+<nav class="sidebar">
     <ul>
         <li class="logo" style="--bg:#333;">
             <a href="@Url.Action("Index", "Home")">
@@ -22,7 +22,7 @@
         </li>
 
         <li style="--bg:#0fc70f;">
-            <a href="@Url.Action("Shop","Shop")">
+            <a href="@Url.Action("Index","Shop")">
                 <div class="icon">
                     <ion-icon name="pricetags-outline"></ion-icon>
                 </div>
@@ -52,40 +52,28 @@
                 </a>
             </li>
         }
-        else
-        {
 
-            <li style="--bg:#333;">
-                <a href="@Url.Action("Index","Home")">
-                    <div class="icon">
-                        <ion-icon name="person-outline"></ion-icon>
-                    </div>
-
-                    <div class="text">User</div>
-                </a>
-            </li>
-        }
 
             @if (User.Identity.IsAuthenticated)
             {
                 using (Html.BeginForm("Logout", "Auth"))
                 {
                     @Html.AntiForgeryToken()
-                <li style="--bg:#333;">
-                  
-                    
-                    <div class="logoutBlock">
+                    <li style="--bg:#333;">
+
+
+                        <div class="logoutBlock">
                             <button type="submit" id="logoutBtn">
-                        <div class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </div>
+                                <div class="icon">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                </div>
                             </button>
-                        <div class="text">LOGOUT</div>
-                    </div>
-                </li>
+                            <div class="text">LOGOUT</div>
+                        </div>
+                    </li>
                 }
             }
-    </div>
+    </nav>
     </div>
     </ul>
     </div>

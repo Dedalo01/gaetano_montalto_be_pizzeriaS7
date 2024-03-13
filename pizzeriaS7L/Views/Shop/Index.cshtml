@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Articoli";
+}
+
+
+
+@section Styles {
+    <style>
+        :root {
+            --max: 270px;
+        }
+        .pizza-card{
+            text-align:center;
+            position:relative;
+            width: var(--max);
+            height: var(--max);
+            margin: 10px;
+        }
+
+        .outer-circle {
+            position: relative;
+            width: var(--max);
+            height: var(--max);
+            background-color: orange;
+            border-radius: 50%;
+        }
+        .inner-circle {
+            position: absolute;
+            top:50%;
+            left:50%;
+            width: 80%;
+            height: 80%;
+            transform: translate(-50%, -50%);
+         
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .pizza-img-container img {
+            display:block;
+            margin-left: auto;
+            margin-right:auto;
+            width:50%;
+            border-radius: 70%;
+            object-fit:cover;
+        }
+
+        .pizza-body {
+            position:absolute;
+            top:13%;
+            left:0;
+            padding: 0 7% 0 7%;
+        }
+
+        .pizza-body span {
+            display:block;
+      
+        }
+
+        .pizza-body span:first-of-type{
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: darkgreen;
+            
+        }
+
+            .pizza-body span:nth-child(3) {
+                padding: 2px 3px;
+                background-color: green;
+                font-weight:bold;
+                color:white;
+                max-width: 25%;
+                margin: 5px auto 0 auto;
+                border-radius: 5px;
+            }
+
+          
+
+    </style>
+    }
+
+<div>
+    <h2>Benvenuto allo shop</h2>
+    <div class="d-flex flex-wrap">
+        @foreach (var articolo in Model)
+        {
+            <div class="pizza-card">
+                <div class=" outer-circle">
+                    <div class="inner-circle">
+
+
+                    </div>
+                </div>
+                <div class="pizza-body">
+
+                        <div class="pizza-img-container">
+                            <img src="/Assets/uploads/@articolo.Foto" />
+                        </div>
+
+                        <div class="pizza-content">
+                            <span>@articolo.Nome</span>
+                            <span>Tempo Consegna: @articolo.TempoConsegna</span>
+                            <span>€@articolo.Prezzo</span>
+                        </div>
+
+                  <!-- TODO fai il form per quantità e prodotto da aggiungere alla session -->
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

@@ -1,33 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
-
+    ViewBag.Title = "Register";
 }
 
 @model pizzeriaS7L.Models.Utenti
 
-
 <div class="d-flex align-items-center justify-content-center flex-column h-100">
 
-    @if (TempData["Success"] != null)
-    {
-        <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Successo!</strong> @TempData["Success"].
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (TempData["IsValid"] != null)
-    {
-        <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>ERRORE:</strong> @TempData["IsValid"].
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-    <h2>Login</h2>
+    <h2>Register</h2>
     <div class="form-container">
 
-        @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "form" }))
+        @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "form" }))
         {
             @Html.AntiForgeryToken()
 
@@ -49,12 +32,12 @@
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
 
-            <button class="btn btn-warning">Login</button>
+            <button class="btn btn-warning">Registrati</button>
         }
 
         <div>
-            <a href="@Url.Action("Register", "Auth")">Non hai un account? Clicca qui per registrarti</a>
+            <a href="@Url.Action("Login", "Auth")">Hai un account? Vai al Login</a>
         </div>
+
     </div>
 </div>
-

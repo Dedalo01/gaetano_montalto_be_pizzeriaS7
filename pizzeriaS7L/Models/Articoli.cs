@@ -28,7 +28,6 @@ namespace pizzeriaS7L.Models
         public string TempoConsegna { get; set; }
 
         [Required]
-        [StringLength(10)]
         public string Ingredienti { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

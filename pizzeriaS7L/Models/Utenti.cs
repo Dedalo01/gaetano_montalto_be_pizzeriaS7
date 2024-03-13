@@ -27,7 +27,7 @@ namespace pizzeriaS7L.Models
         [StringLength(200, ErrorMessage = "L'Email può avere massimo 200 caratteri.")]
         public string Email { get; set; }
 
-        public int RuoloId { get; set; }
+        public int RuoloId { get; set; } = 2;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ordini> Ordini { get; set; }
