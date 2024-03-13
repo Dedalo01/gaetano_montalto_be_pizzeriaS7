@@ -1,28 +1,38 @@
 ﻿
 @{
     ViewBag.Title = "Login";
+
 }
 
 @model pizzeriaS7L.Models.Utenti
 
+<div class="d-flex align-items-center justify-content-center flex-column h-100">
+
 <h2>Login</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post, new {@class = "form"}))
 {
     @Html.AntiForgeryToken()
 
-    @Html.LabelFor(m => m.Email)
-    @Html.EditorFor(m => m.Email)
-    @Html.ValidationMessageFor(m => m.Email)
-    <br />
-    @Html.LabelFor(m => m.Username)
-    @Html.EditorFor(m => m.Username)
-    @Html.ValidationMessageFor(m => m.Username)
-    <br />
-    @Html.LabelFor(m => m.Password)
-    @Html.EditorFor(m => m.Password)
-    @Html.ValidationMessageFor(m => m.Password)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
 
-    <button>Login</button>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username)
+        @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <button class="btn btn-warning">Login</button>
 }
+</div>
 
