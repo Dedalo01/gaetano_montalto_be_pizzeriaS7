@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        :root {
+            --navbarHeight: 56px;
+        }
+
+        #sidebar {
+            width: 280px;
+            height: calc(100vh - 56px);
+            padding-top: 56px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- navbar -->
+    <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="ms-auto">
+                            @using (Html.BeginForm("Logout", "Auth"))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-danger">Logout</button>
+                            }
+                        </li>
+                    }
+                </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="d-flex">
+        <!-- sidebar -->
+        <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+
+            <ul class="nav nav-pills flex-column mb-auto">
+              
+                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link text-white active" })</li>
+            </ul>
+       
+            
+        </div>
+
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script>
+        var navbarHeight = $('#navbar').outerHeight();
+    </script>
+    
+    @RenderSection("scripts", required: false)
+
+
+
+    </body>
+</html>
