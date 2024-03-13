@@ -191,3 +191,54 @@ body {
         transform: translate(10px, 23px) rotate(-45deg);
         box-shadow: 0 0 0 #fff;
     }
+
+.sidebar #logoutBtn {
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar .logoutBlock {
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+    .sidebar .logoutBlock .icon {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 60px;
+        padding-left: 10px;
+        height: 70px;
+        font-size: 1.5em;
+        color: #333;
+        transition: 0.5s;
+    }
+
+    .sidebar .logoutBlock .text {
+        position: relative;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        color: #333;
+        padding-left: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+    }
+
+    .sidebar .logoutBlock:hover a .icon,
+    .sidebar .logoutBlock:hover a .text {
+        color: var(--bg);
+    }
+
+
+/* MOVE REST OF CONTENT ON THE RIGHT*/
+.body-content {
+    margin-left: 80px;
+}
