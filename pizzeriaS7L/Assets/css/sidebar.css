@@ -1,6 +1,7 @@
 ﻿:root {
     /*--clr: #14161e;*/
-    --clr: #CC0000;
+   /* --clr: #CC0000;*/
+    --clr: #de3131;
 }
 
 .sidebar, menuToggle li, ul {

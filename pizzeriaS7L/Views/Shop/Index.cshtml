@@ -8,11 +8,12 @@
 @section Styles {
     <style>
         :root {
-            --max: 270px;
+            --max: 320px;
         }
-        .pizza-card{
-            text-align:center;
-            position:relative;
+
+        .pizza-card {
+            text-align: center;
+            position: relative;
             width: var(--max);
             height: var(--max);
             margin: 10px;
@@ -25,63 +26,116 @@
             background-color: orange;
             border-radius: 50%;
         }
+
         .inner-circle {
             position: absolute;
-            top:50%;
-            left:50%;
+            top: 50%;
+            left: 50%;
             width: 80%;
             height: 80%;
             transform: translate(-50%, -50%);
-         
             background-color: white;
             border-radius: 50%;
         }
 
         .pizza-img-container img {
-            display:block;
+            display: block;
             margin-left: auto;
-            margin-right:auto;
-            width:50%;
+            margin-right: auto;
+            width: 45%;
             border-radius: 70%;
-            object-fit:cover;
+            object-fit: cover;
         }
 
         .pizza-body {
-            position:absolute;
-            top:13%;
-            left:0;
+            position: absolute;
+            top: 13%;
+            left: 0;
             padding: 0 7% 0 7%;
         }
 
-        .pizza-body span {
-            display:block;
-      
-        }
-
-        .pizza-body span:first-of-type{
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: darkgreen;
-            
-        }
-
-            .pizza-body span:nth-child(3) {
-                padding: 2px 3px;
-                background-color: green;
-                font-weight:bold;
-                color:white;
-                max-width: 25%;
-                margin: 5px auto 0 auto;
-                border-radius: 5px;
+            .pizza-body span {
+                display: block;
             }
 
-          
 
+
+                .pizza-body span:first-of-type {
+                    font-weight: bold;
+                    font-size: 1.3rem;
+                    color: darkgreen;
+                }
+
+                .pizza-body span:nth-child(3) {
+                    padding: 2px 3px;
+                    background-color: green;
+                    font-weight: bold;
+                    color: white;
+                    max-width: 25%;
+                    margin: 5px auto 0 auto;
+                    border-radius: 5px;
+                }
+
+
+        .pizza-card .pizza-form {
+            width: 80%;
+            position: relative;
+        }
+
+            .pizza-card .pizza-form label, .pizza-card .pizza-form input {
+                position: absolute;
+                transform: rotate(32deg);
+            }
+
+            .pizza-card .pizza-form label {
+                top: -7px;
+                left: 57px;
+                font-weight: bold;
+            }
+
+            .pizza-card .pizza-form input {
+                width: 20%;
+                top: 12px;
+                left: 56px;
+            }
+
+            .pizza-card .pizza-form button {
+                display: block;
+                font-weight: bold;
+                background-color: red;
+                border-radius: 5px;
+                border: none;
+                padding: 6px 5px;
+                color: white;
+                text-transform: uppercase;
+                position: absolute;
+                right: 0px;
+                bottom: -47px;
+                transform: rotate(338deg);
+            }
     </style>
-    }
+}
 
 <div>
     <h2>Benvenuto allo shop</h2>
+
+    @if (TempData["AddSuccess"] != null)
+    {
+        <div class="alert alert-success">
+            <p>@TempData["AddSuccess"]</p>
+        </div>
+    }
+
+    @*@if (Session["listaArticoli"] != null)
+    {
+        <ul>
+            @foreach (var articolo in Session["listaArticoli"] as List<pizzeriaS7L.Models.OrdiniArticoli>)
+            {
+                <li>@articolo.ArticoloId - @articolo.Quantita</li>
+            }
+        </ul>
+    }*@
+
     <div class="d-flex flex-wrap">
         @foreach (var articolo in Model)
         {
@@ -94,17 +148,26 @@
                 </div>
                 <div class="pizza-body">
 
-                        <div class="pizza-img-container">
-                            <img src="/Assets/uploads/@articolo.Foto" />
-                        </div>
+                    <div class="pizza-img-container">
+                        <img src="/Assets/uploads/@articolo.Foto" />
+                    </div>
 
-                        <div class="pizza-content">
-                            <span>@articolo.Nome</span>
-                            <span>Tempo Consegna: @articolo.TempoConsegna</span>
-                            <span>€@articolo.Prezzo</span>
-                        </div>
+                    <div class="pizza-content">
+                        <span>@articolo.Nome</span>
+                        <span>Tempo Consegna: @articolo.TempoConsegna min.</span>
+                        <span>€@articolo.Prezzo</span>
 
-                  <!-- TODO fai il form per quantità e prodotto da aggiungere alla session -->
+                        <!-- TODO fai il form per quantità e prodotto da aggiungere alla session -->
+                        <form action="@Url.Action("Index")" class="pizza-form" method="post">
+                            <label for="quantita">Quantità:</label>
+                            <input id="quantita" name="quantita" type="number" />
+                            <input type="hidden" name="articoloId" value="@articolo.Id" />
+                            <input type="hidden" name="articoloNome" value="@articolo.Nome" />
+
+                            <button>Aggiungi</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         }
