@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Carrello";
+    decimal totale = 0;
+}
+
+<h2>Cart</h2>
+<ul>
+
+    @foreach (var articolo in Model)
+    {
+        totale += articolo.Prezzo * articolo.Quantita;
+
+        <li>@articolo.NomeArticolo - € @articolo.Prezzo - Qt. @articolo.Quantita </li>
+    }
+
+</ul>
+
+
+@if (Model != null)
+{
+    <div>
+        <p>Totale: €@totale</p>
+        <a class="text-uppercase" href="@Url.Action("Order")">Conferma e vai al Riepilogo Ordine</a>
+    </div>
+}

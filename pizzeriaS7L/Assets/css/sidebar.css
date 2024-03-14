@@ -25,6 +25,7 @@ body {
     transition: 0.5s;
     padding-left: 5px;
     overflow: hidden;
+    z-index: 2000;
 }
 
     .sidebar.active {

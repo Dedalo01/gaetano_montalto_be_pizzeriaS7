@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+    decimal totale = 0;
+}
+
+@model pizzeriaS7L.Models.Ordini
+
+<h2>Order</h2>
+
+@if (Session["carrello"] != null)
+{
+    <ul>
+
+        @foreach (var articolo in Session["carrello"] as List<pizzeriaS7L.Models.CartViewModel>)
+        {
+            totale += articolo.Prezzo * articolo.Quantita;
+
+            <li>@articolo.NomeArticolo - € @articolo.Prezzo - Qt. @articolo.Quantita </li>
+        }
+
+    </ul>
+
+    <div>
+        <p>Totale: €@totale</p>
+
+    </div>
+}
+
+<div>
+    @using (Html.BeginForm("Order"))
+    {
+        @Html.LabelFor(m => m.IndirizzoSpedizione)
+        @Html.EditorFor(m => m.IndirizzoSpedizione)
+        @Html.ValidationMessageFor(m => m.IndirizzoSpedizione)
+
+        @Html.LabelFor(m => m.Nota)
+        @Html.EditorFor(m => m.Nota)
+        @Html.ValidationMessageFor(m => m.Nota)
+
+        <button>Concludi Ordine</button>
+    }
+</div>

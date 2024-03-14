@@ -171,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Articoli.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\ManagerRuoli.cs" />
     <Compile Include="Models\Ordini.cs" />
     <Compile Include="Models\OrdiniArticoli.cs" />
@@ -251,11 +252,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Shop\Shop.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\Cart.cshtml" />
+    <Content Include="Views\Shop\Order.cshtml" />
+    <Content Include="Views\Shop\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

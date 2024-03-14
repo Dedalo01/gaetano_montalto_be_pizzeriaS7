@@ -4,7 +4,6 @@ namespace pizzeriaS7L.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Ordini")]
     public partial class Ordini
@@ -14,6 +13,7 @@ namespace pizzeriaS7L.Models
         {
             OrdiniArticoli = new HashSet<OrdiniArticoli>();
         }
+
 
         public int Id { get; set; }
 
@@ -28,9 +28,9 @@ namespace pizzeriaS7L.Models
         [Column(TypeName = "smalldatetime")]
         public DateTime DataOrdine { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "DA INSERIRE")]
         [StringLength(10)]
-        public string IsCompleto { get; set; }
+        public string IsCompleto { get; set; } = "DA EVADERE";
 
         public virtual Utenti Utenti { get; set; }
 
