@@ -5,3 +5,117 @@
 
 <h2>SONO LA PAGINA PER GLI ADMIN</h2>
 
+<div>
+    <div class="orders">
+        <h2>ORDINI DA EVADERE</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Indirizzo Spedizione</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Data & Ora</th>
+                    <th scope="col">Evaso</th>
+                    <th scope="col">Completa Ordine</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ordine in Model)
+                {
+
+                    if (ordine.IsCompleto == "DA EVADERE")
+                    {
+                        <tr>
+                            <th scope="row">@ordine.Id</th>
+                            <td>@ordine.Utenti.Email</td>
+                            <td>@ordine.IndirizzoSpedizione</td>
+                            <td>@ordine.Nota</td>
+                            <td>@ordine.DataOrdine</td>
+                            <td>@ordine.IsCompleto</td>
+                            <td>
+                                @using (Html.BeginForm())
+                                {
+                                    <input type="hidden" name="orderId" value="@ordine.Id" />
+                                    <button>Evadi Ordine</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <h2>ORDINI EVASI</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Indirizzo Spedizione</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Data & Ora</th>
+                    <th scope="col">Evaso</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ordine in Model)
+                {
+                    if (ordine.IsCompleto != "DA EVADERE")
+                    {
+
+                        <tr>
+                            <th scope="row">@ordine.Id</th>
+                            <td>@ordine.Utenti.Email</td>
+                            <td>@ordine.IndirizzoSpedizione</td>
+                            <td>@ordine.Nota</td>
+                            <td>@ordine.DataOrdine</td>
+                            <td>@ordine.IsCompleto</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <h2>Sommario Degli Ordini</h2>
+        <div>
+            <label for="date">Seleziona Data:</label>
+            <input type="date" id="date">
+            <button id="getSummary">Ottieni Ordini</button>
+        </div>
+        <div id="summaryResult">
+            <!-- Valore dinamico -->
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#getSummary').click(function () {
+                var date = $('#date').val();
+                $.ajax({
+                    url: '/Admin/GetOrderSummary',
+                    type: 'GET',
+                    data: { date: date },
+                    success: function (data) {
+                        console.log(data)
+                        $('#summaryResult').html('<p>Total completed orders: ' + data.totalCompletedOrders + '</p>' +
+                            '<p>Total revenue: ' + data.totalRevenue + '</p>');
+                    },
+                    error: function () {
+                        alert('Errore Mentre Recuperavo i dati.');
+                    }
+                });
+            });
+        });
+    </script>
+}

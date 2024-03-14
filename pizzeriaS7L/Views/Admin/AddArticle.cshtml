@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AddArticle";
+}
+
+@model pizzeriaS7L.Models.Articoli
+
+<h2>AddArticle</h2>
+
+<div>
+    @using (Html.BeginForm("AddArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nome)
+            @Html.EditorFor(m => m.Nome)
+            @Html.ValidationMessageFor(m => m.Nome)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Prezzo)
+            @Html.EditorFor(m => m.Prezzo)
+            @Html.ValidationMessageFor(m => m.Prezzo)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.TempoConsegna, "Tempo di Consegna")
+            @Html.EditorFor(m => m.TempoConsegna)
+            @Html.ValidationMessageFor(m => m.TempoConsegna)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ingredienti)
+            @Html.EditorFor(m => m.Ingredienti)
+            @Html.ValidationMessageFor(m => m.Ingredienti)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Foto, "Immagine")
+            <input type="file" name="Foto" id="Foto" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Invia</button>
+    }
+</div>
+

@@ -1,8 +1,6 @@
 ﻿using pizzeriaS7L.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -72,10 +70,10 @@ namespace pizzeriaS7L.Controllers
         public ActionResult Order(Ordini nuovoOrdine)
         {
 
-            try
+
+
+            if (ModelState.IsValid)
             {
-                //if (ModelState.IsValid)
-                //{
                 PizzeriaContext ctx = new PizzeriaContext();
                 nuovoOrdine.UtenteId = Convert.ToInt32(User.Identity.Name);
                 nuovoOrdine.DataOrdine = DateTime.Now;
@@ -91,29 +89,17 @@ namespace pizzeriaS7L.Controllers
                 }
 
                 ctx.SaveChanges();
-                // Il tuo codice di salvataggio qui
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                    }
-                }
-                throw; // Rilancia l'eccezione per gestirla più avanti, se necessario
+
+                return RedirectToAction("Success", new { orderId = nuovoOrdine.Id });
             }
 
-
-            return RedirectToAction("Success", new { orderId = nuovoOrdine.Id });
-            // }
-
-            //return View(nuovoOrdine);
+            return View(nuovoOrdine);
         }
 
         public ActionResult Success()
         {
+            Session.Remove("listaArticoli");
+            Session.Remove("carrello");
             return View();
         }
     }

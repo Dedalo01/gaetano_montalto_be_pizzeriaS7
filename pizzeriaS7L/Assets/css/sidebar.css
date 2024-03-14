@@ -16,10 +16,12 @@ body {
 }
 
 .sidebar {
-    position: absolute;
-    top: 0;
-    bottom:0;
+    position: relative;
+    display:inline-block;
+    /*top: 0;
+    bottom:0;*/
     width: 80px;
+   
    /* height: 100vh;*/
     background: #fff;
     transition: 0.5s;
@@ -242,15 +244,30 @@ body {
 
 
 /* MOVE REST OF CONTENT ON THE RIGHT*/
-.body-content {
+.slide-content {
+   display:flex;
+   height:100vh;
+   
+}
+
+/*.body-content {
     margin-top:0px;
     margin-left: 80px;
     height: 100vh;
     width: calc(100% - 80px);
     overflow-y: auto;
+    flex:1;
+    transition: margin-left 0.5s;
+}*/
+
+.body-content {
+    display:inline-block;
+    margin-left: 81px;
+    transition: margin-left 0.5s;
+    overflow-y:auto;
 }
 
-body {
-    min-height: 100vh;
-    overflow: hidden;
-}
+/*.sidebar.active ~ .body-content {
+    margin-left: 300px;*/ /* Sposta il contenuto a destra quando la sidebar è aperta */
+/*}*/
+

@@ -8,19 +8,21 @@
     @Styles.Render("~/Content/css")
 
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Assets/css/sidebar.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
+    <link href="~/Assets/css/sidebar.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="slide-content">
 
-    @Html.Partial("_Sidebar")
+        @Html.Partial("_Sidebar")
 
-    <div class="body-content">
-        @RenderBody()
-  
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
-        </footer>
+        <div class="body-content">
+            @RenderBody()
+
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+            </footer>
+        </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
