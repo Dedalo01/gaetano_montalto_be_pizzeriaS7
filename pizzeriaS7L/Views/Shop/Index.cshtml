@@ -113,6 +113,10 @@
                 bottom: -47px;
                 transform: rotate(338deg);
             }
+
+            .pizza-content {
+                color:black;
+            }
     </style>
 }
 
@@ -125,16 +129,6 @@
             <p>@TempData["AddSuccess"]</p>
         </div>
     }
-
-    @*@if (Session["listaArticoli"] != null)
-    {
-        <ul>
-            @foreach (var articolo in Session["listaArticoli"] as List<pizzeriaS7L.Models.OrdiniArticoli>)
-            {
-                <li>@articolo.ArticoloId - @articolo.Quantita</li>
-            }
-        </ul>
-    }*@
 
     <div class="d-flex flex-wrap">
         @foreach (var articolo in Model)
@@ -157,7 +151,6 @@
                         <span>Tempo Consegna: @articolo.TempoConsegna min.</span>
                         <span>€@articolo.Prezzo</span>
 
-                        <!-- TODO fai il form per quantità e prodotto da aggiungere alla session -->
                         <form action="@Url.Action("Index")" class="pizza-form" method="post">
                             <label for="quantita">Quantità:</label>
                             <input id="quantita" name="quantita" type="number" />
