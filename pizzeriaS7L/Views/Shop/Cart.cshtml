@@ -5,16 +5,6 @@
 }
 
 <h2>Carrello</h2>
-@*<ul>
-
-    @foreach (var articolo in Model)
-    {
-        totale += articolo.Prezzo * articolo.Quantita;
-
-        <li>@articolo.NomeArticolo - € @articolo.Prezzo - Qt. @articolo.Quantita </li>
-    }
-
-</ul>*@
 
 <section class="carrello">
     <table class="table">
@@ -38,6 +28,8 @@
                     <td>@articolo.Prezzo</td>
                     <td>@articolo.Quantita</td>
                 </tr>
+
+                // TODO: FINIRE STILE QUI E IN ORDER
             }
         </tbody>
     </table>
@@ -47,8 +39,43 @@
 
 @if (Model != null)
 {
-    <div>
-        <p>Totale: €@totale</p>
+    <section class="cart-total">
+        <p>Totale: <span>€@totale</span></p>
         <a class="text-uppercase" href="@Url.Action("Order")">Conferma e vai al Riepilogo Ordine</a>
-    </div>
+    </section>
 }
+
+
+@section Styles {
+    <style>
+        h2 {
+            margin-top: 5px;
+            font-size: 100px;
+        }
+
+        .carrello {
+            background-color: var(--aWhite);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .cart-total {
+            background-color: var(--aWhite);
+            border-radius: 20px;
+            padding: 20px 20px;
+            margin-top: 40px;
+            color: black;
+            width: 350px;
+        }
+
+        .cart-total p{
+            font-size:2rem;
+            font-weight:bold;
+        }
+
+            .cart-total span {
+                color: #00CC3D;
+            }
+    </style>
+    }

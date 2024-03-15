@@ -78,7 +78,7 @@ namespace pizzeriaS7L.Controllers
             var totalRevenue = context.Ordini
                 .Where(o => o.DataOrdine >= startDate && o.DataOrdine < endDate && o.IsCompleto == "EVASO")
                 .SelectMany(o => o.OrdiniArticoli)
-                .Sum(oa => oa.Articoli.Prezzo * oa.Quantita);
+                .Sum(oa => (oa.Articoli.Prezzo != null ? oa.Articoli.Prezzo : 0) * oa.Quantita);
 
             return Json(new { totalCompletedOrders, totalRevenue }, JsonRequestBehavior.AllowGet);
         }
