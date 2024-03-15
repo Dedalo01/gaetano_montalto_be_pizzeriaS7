@@ -8,7 +8,7 @@
 
 <h2>Completa Ordine</h2>
 
-@if (Session["carrello"] != null)
+@if (Session["carrello"] != null && totale != 0)
 {
 
     <section class="carrello">
@@ -73,6 +73,11 @@
 
     </section>
 }
+
+else
+            {
+                <p>Ups... in qualche modo sei arrivato qui senza prima aver riempito il Carrello! Torna su Articoli per riempirlo con i prodotti che più desideri!</p>
+            }
 
 
 
