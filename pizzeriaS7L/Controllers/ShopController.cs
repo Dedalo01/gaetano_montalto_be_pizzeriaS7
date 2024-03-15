@@ -61,6 +61,15 @@ namespace pizzeriaS7L.Controllers
             return View(carrello);
         }
 
+        [HttpPost]
+        public ActionResult EmptyCart()
+        {
+            Session["carrello"] = null;
+            Session["listaArticoli"] = null;
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Order()
         {
             return View();
