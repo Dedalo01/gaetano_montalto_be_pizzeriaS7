@@ -3,98 +3,172 @@
     ViewBag.Title = "Admin Page";
 }
 
-<h2>SONO LA PAGINA PER GLI ADMIN</h2>
+<h2>Benvenuto Admin</h2>
+<p>Per aggiungere un articolo, premi sul bottone con "+" che trovi nella sidebar.</p>
 
-<div>
-    <div class="orders">
+<div class="admin-content">
+    <section class="orders">
         <h2>ORDINI DA EVADERE</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Indirizzo Spedizione</th>
-                    <th scope="col">Note</th>
-                    <th scope="col">Data & Ora</th>
-                    <th scope="col">Evaso</th>
-                    <th scope="col">Completa Ordine</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var ordine in Model)
-                {
 
-                    if (ordine.IsCompleto == "DA EVADERE")
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Indirizzo Spedizione</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Data & Ora</th>
+                        <th scope="col">Evaso</th>
+                        <th scope="col">Completa Ordine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ordine in Model)
                     {
-                        <tr>
-                            <th scope="row">@ordine.Id</th>
-                            <td>@ordine.Utenti.Email</td>
-                            <td>@ordine.IndirizzoSpedizione</td>
-                            <td>@ordine.Nota</td>
-                            <td>@ordine.DataOrdine</td>
-                            <td>@ordine.IsCompleto</td>
-                            <td>
-                                @using (Html.BeginForm())
-                                {
-                                    <input type="hidden" name="orderId" value="@ordine.Id" />
-                                    <button>Evadi Ordine</button>
-                                }
-                            </td>
-                        </tr>
-                    }
-                }
 
-            </tbody>
-        </table>
+                        if (ordine.IsCompleto == "DA EVADERE")
+                        {
+                            <tr>
+                                <th scope="row">@ordine.Id</th>
+                                <td>@ordine.Utenti.Email</td>
+                                <td>@ordine.IndirizzoSpedizione</td>
+                                <td>@ordine.Nota</td>
+                                <td>@ordine.DataOrdine</td>
+                                <td>@ordine.IsCompleto</td>
+                                <td>
+                                    @using (Html.BeginForm())
+                                    {
+                                        <input type="hidden" name="orderId" value="@ordine.Id" />
+                                        <button>Evadi Ordine</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
 
         <h2>ORDINI EVASI</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Indirizzo Spedizione</th>
-                    <th scope="col">Note</th>
-                    <th scope="col">Data & Ora</th>
-                    <th scope="col">Evaso</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var ordine in Model)
-                {
-                    if (ordine.IsCompleto != "DA EVADERE")
+        <div class="table-container">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Indirizzo Spedizione</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Data & Ora</th>
+                        <th scope="col">Evaso</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ordine in Model)
                     {
+                        if (ordine.IsCompleto != "DA EVADERE")
+                        {
 
-                        <tr>
-                            <th scope="row">@ordine.Id</th>
-                            <td>@ordine.Utenti.Email</td>
-                            <td>@ordine.IndirizzoSpedizione</td>
-                            <td>@ordine.Nota</td>
-                            <td>@ordine.DataOrdine</td>
-                            <td>@ordine.IsCompleto</td>
-                        </tr>
+                            <tr>
+                                <th scope="row">@ordine.Id</th>
+                                <td>@ordine.Utenti.Email</td>
+                                <td>@ordine.IndirizzoSpedizione</td>
+                                <td>@ordine.Nota</td>
+                                <td>@ordine.DataOrdine</td>
+                                <td>@ordine.IsCompleto</td>
+                            </tr>
+                        }
                     }
-                }
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-    </div>
+        </div>
 
-    <div>
+    </section>
+
+    <section class="summary">
         <h2>Sommario Degli Ordini</h2>
-        <div>
-            <label for="date">Seleziona Data:</label>
-            <input type="date" id="date">
+        <div class="summary-content">
+            <div>
+                <label for="date">Seleziona Data:</label>
+                <input type="date" id="date">
             <button id="getSummary">Ottieni Ordini</button>
+            </div>
+
+            <div id="summaryResult">
+                <!-- Valore dinamico -->
+            </div>
         </div>
-        <div id="summaryResult">
-            <!-- Valore dinamico -->
-        </div>
-    </div>
+    </section>
 
 </div>
+
+
+
+@section Styles {
+    <style>
+
+        h2 {
+            margin-top: 20px;
+        }
+        .table-container {
+            background-color: var(--aWhite);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .admin-content button {
+            text-transform: uppercase;
+            border: none;
+            background-color: #00CC3D;
+            padding: 8px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .summary {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .summary-content button {
+                width: 170px;
+                margin-left: 20px;
+            }
+
+        .summary div {
+            background-color: var(--aWhite);
+            padding: 15px 20px 10px 20px;
+            border-radius: 20px;
+            color: black;
+        }
+
+        #summaryResult {
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+            #summaryResult span {
+                color: forestgreen;
+            }
+    </style>
+}
+
 
 
 @section scripts {
@@ -108,8 +182,8 @@
                     data: { date: date },
                     success: function (data) {
                         console.log(data)
-                        $('#summaryResult').html('<p>Total completed orders: ' + data.totalCompletedOrders + '</p>' +
-                            '<p>Total revenue: ' + data.totalRevenue + '</p>');
+                        $('#summaryResult').html('<p>Totale Ordini Completati: <span>' + data.totalCompletedOrders + '</span></p>' +
+                            '<p>Totale Incasso Giornaliero: <span>' + data.totalRevenue + '€</span></p>');
                     },
                     error: function () {
                         alert('Errore Mentre Recuperavo i dati.');
