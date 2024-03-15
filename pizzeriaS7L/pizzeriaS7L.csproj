@@ -186,6 +186,7 @@
     <Content Include="Assets\js\sidebar.js" />
     <Content Include="Assets\uploads\4stagioni.jpeg" />
     <Content Include="Assets\uploads\pizza-wurstel-patatine-pomodoro.jpg" />
+    <Content Include="Assets\uploads\pizzaHero.jpeg" />
     <Content Include="Assets\uploads\pizzaMargherita.jpeg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

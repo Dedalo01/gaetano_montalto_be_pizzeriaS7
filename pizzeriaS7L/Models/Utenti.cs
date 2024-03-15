@@ -20,6 +20,7 @@ namespace pizzeriaS7L.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Devi inserire la Password.")]
+        [DataType(DataType.Password)]
         [StringLength(50, ErrorMessage = "La password può avere massimo 50 caratteri.")]
         public string Password { get; set; }
 

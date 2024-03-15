@@ -20,6 +20,15 @@ body {
     color:antiquewhite;
 }
 
+a {
+    color: #52CB77;
+    text-decoration:none;
+}
+
+    a:hover {
+        color: #2F9D50;
+    }
+
 .sidebar {
     position: relative;
    

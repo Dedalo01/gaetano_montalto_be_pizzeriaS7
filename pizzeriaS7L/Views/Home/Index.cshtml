@@ -1,22 +1,103 @@
 ﻿
 
 <main>
-  <section class="hero">
-      <h1>AL FORNO</h1>
-      <div>
-          <p>Dove i sogni son... Pizze </p>
-          <ion-icon name="pizza"></ion-icon>
-      </div>
-  </section>
-    <section>
-        <div>
-            <div class="main-img-container">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AL FORNO</h1>
+            <p><em>Dove i sogni son... Pizze</em></p>
 
+        </div>
+    </section>
+    <section class="secondary-content">
+        <div class="info-box" style="--infoBg: #F9EA4E; ">
+            <div class="info-img-container">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-p/0f/30/2f/05/delicious-mushroom-pizza.jpg" alt="pizza deliziosa" />
             </div>
             <div>
-                <p>Lorem</p>
+                <p>Fantastici prodotti fatti in casa.</p>
+                <p>Una delizia per il tuo palato!</p>
+            </div>
+        </div>
+
+        <div class="info-box" style="--infoBg: #52CB77;">
+            <div class="info-img-container">
+                <img src="https://static.wikia.nocookie.net/recipes/images/6/6e/Pepperoni_Pizza.jpg" alt="gusta!" />
+            </div>
+            <div>
+                <p>Vuoi vedere i nostri prodotti?</p>
+                <p><a href="@Url.Action("Login", "Auth")">Loggati</a> o <a href="@Url.Action("Register", "Auth")">Registrati</a></p>
+              
             </div>
         </div>
     </section>
 </main>
 
+@section Styles {
+    <style>
+        .hero {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("../../Assets/uploads/pizzaHero.jpeg");
+            background-size: cover;
+            border-start-start-radius: 20px;
+            border-start-end-radius: 20px;
+            padding: 100px 150px;
+            color: white;
+        }
+
+        .hero-content {
+            background-color: rgba(250, 235, 215, 0.4);
+            padding: 40px 80px;
+            border-radius: 30px;
+        }
+
+            .hero-content h1 {
+                font-size: 100px;
+                text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+            }
+
+            .hero-content p {
+                font-size: 30px;
+            }
+
+        .secondary-content {
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-evenly;
+        }
+
+        .info-box {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            max-width: 350px;
+            background-color: white;
+            color: black;
+            padding: 8px 20px 3px 8px;
+        }
+
+        .info-img-container {
+            width: 30%;
+        }
+
+            .info-img-container img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .info-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -10px; /* Posizione rispetto al bordo sinistro */
+            height: 100%;
+            width: 10px;
+            background-color: var(--infoBg);
+        }
+    </style>
+
+}

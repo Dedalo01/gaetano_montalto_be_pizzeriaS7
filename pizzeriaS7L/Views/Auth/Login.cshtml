@@ -49,7 +49,12 @@
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
 
-            <button class="btn btn-warning">Login</button>
+            <div class="login-container text-center">
+                <button>
+                <ion-icon name="leaf"></ion-icon>
+                <p>Login</p>
+                </button>
+            </div>
         }
 
         <div>
@@ -58,3 +63,46 @@
     </div>
 </div>
 
+@section Styles {
+    <style>
+        h2 {
+            font-size: 7rem;
+            margin-bottom: 30px;
+        }
+        .form-container {
+            padding: 20px 40px; 
+            background-color: white;
+            border-radius: 20px;
+            color:black;
+        }
+
+        .form-container input {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+
+        .form-container ion-icon {
+            color: forestgreen;
+            font-size: 120px;
+        }
+
+        .form-container button {
+            position:relative;
+            text-transform: uppercase;
+            border:none;
+            background-color:transparent;
+            font-weight: bold;
+        }
+
+            .form-container button p {
+                position:absolute;
+                transform:rotate(33deg);
+                top:44px;
+                left:51px;
+                color: white;
+            }
+
+    </style>
+    
+    }
