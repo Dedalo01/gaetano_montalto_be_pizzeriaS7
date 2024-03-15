@@ -8,8 +8,6 @@
 
 <h2>Completa Ordine</h2>
 
-@if (Session["carrello"] != null && totale != 0)
-{
 
     <section class="carrello">
         <table class="table">
@@ -34,7 +32,6 @@
                         <td>@articolo.Quantita</td>
                     </tr>
 
-                    // TODO: FINIRE STILE QUI E IN ORDER
                 }
             </tbody>
         </table>
@@ -53,7 +50,7 @@
                     @Html.EditorFor(m => m.IndirizzoSpedizione, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(m => m.IndirizzoSpedizione, "", new { @class = "text-danger" })
                 </div>
-
+                <br/>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Nota, "Eventuali Note (Allergeni, Ingredienti Extra...):")
                     <br />
@@ -72,14 +69,6 @@
         </section>
 
     </section>
-}
-
-else
-            {
-                <p>Ups... in qualche modo sei arrivato qui senza prima aver riempito il Carrello! Torna su Articoli per riempirlo con i prodotti che più desideri!</p>
-            }
-
-
 
 
 
