@@ -4,8 +4,8 @@
     decimal totale = 0;
 }
 
-<h2>Cart</h2>
-<ul>
+<h2>Carrello</h2>
+@*<ul>
 
     @foreach (var articolo in Model)
     {
@@ -14,7 +14,35 @@
         <li>@articolo.NomeArticolo - € @articolo.Prezzo - Qt. @articolo.Quantita </li>
     }
 
-</ul>
+</ul>*@
+
+<section class="carrello">
+    <table class="table">
+        <thead>
+            <tr>
+            
+                <th scope="col">Articolo</th>
+                <th scope="col">Prezzo per 1</th>
+                <th scope="col">Quantità Ordinata</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var articolo in Model)
+            {
+                totale += articolo.Prezzo * articolo.Quantita;
+
+                <tr>
+                    <th scope="row">@articolo.NomeArticolo</th>
+                
+                    <td>@articolo.Prezzo</td>
+                    <td>@articolo.Quantita</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</section>
 
 
 @if (Model != null)
