@@ -3,5 +3,28 @@
     ViewBag.Title = "Success";
 }
 
-<h2>Success</h2>
+<div class="d-flex flex-column align-items-center justify-content-center h-100">
 
+
+<h1 class="big-h1">SUCCESSO!!!</h1>
+<div class="success-container">
+    <p>Ora non ti resta che attendere seduto al calduccio l'arrivo del tuo ordine!</p>
+    <p>Nel mentre puoi goderti questa fantastica canzone:</p>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/n9FMvfvkBro" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+
+@section Styles {
+    <style>
+        .big-h1 {
+            font-size:5rem;
+        }
+
+        .success-container {
+            background-color: #9fd776;
+            padding: 20px 25px;
+            border-radius: 20px;
+        }
+    </style>
+    }

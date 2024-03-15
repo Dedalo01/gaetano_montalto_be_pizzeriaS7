@@ -1,7 +1,9 @@
 ﻿:root {
     /*--clr: #14161e;*/
-   /* --clr: #CC0000;*/
+    /* --clr: #CC0000;*/
     --clr: #de3131;
+    --white: #fff;
+    --aWhite: antiquewhite;
 }
 
 .sidebar, menuToggle li, ul {
@@ -13,17 +15,20 @@ body {
     background-color: var(--clr);
     margin: 0;
     padding: 0;
+    display: flex;
+    height: 100vh;
+    color:antiquewhite;
 }
 
 .sidebar {
     position: relative;
-    display:inline-block;
+   
     /*top: 0;
     bottom:0;*/
     width: 80px;
    
    /* height: 100vh;*/
-    background: #fff;
+    background: var(--aWhite);
     transition: 0.5s;
     padding-left: 5px;
     overflow: hidden;
@@ -123,7 +128,7 @@ body {
                 }
 
             .sidebar ul li.active a .icon {
-                color: #fff;
+                color: var(--aWhite);
             }
 
             .sidebar ul li.active a .text {
@@ -146,7 +151,7 @@ body {
             }
 
             .sidebar ul li:hover.active a .icon::before {
-                background: #fff;
+                background: var(--aWhite);
             }
 
 .bottom {
@@ -244,30 +249,32 @@ body {
 
 
 /* MOVE REST OF CONTENT ON THE RIGHT*/
-.slide-content {
-   display:flex;
-   height:100vh;
-   
-}
 
-/*.body-content {
-    margin-top:0px;
-    margin-left: 80px;
-    height: 100vh;
-    width: calc(100% - 80px);
+.body-content {
+    /*margin-left: 81px;*/
+    margin-top:0;
     overflow-y: auto;
     flex:1;
     transition: margin-left 0.5s;
-}*/
-
-.body-content {
-    display:inline-block;
-    margin-left: 81px;
-    transition: margin-left 0.5s;
-    overflow-y:auto;
 }
 
-/*.sidebar.active ~ .body-content {
-    margin-left: 300px;*/ /* Sposta il contenuto a destra quando la sidebar è aperta */
-/*}*/
+/* SCROLLBAR STYLE */
+/* Stile generale della scrollbar */
+::-webkit-scrollbar {
+    width: 10px; 
+}
 
+/* Track scrollbar (fondo) */
+::-webkit-scrollbar-track {
+    background: var(--aWhite); 
+}
+
+/* Handle scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #F4C366; /* Colore dell'handle */
+}
+
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #E59A10;
+    }
