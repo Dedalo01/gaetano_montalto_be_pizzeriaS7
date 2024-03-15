@@ -25,7 +25,7 @@
             </div>
             <div>
                 <p>Vuoi vedere i nostri prodotti?</p>
-                <p><a href="@Url.Action("Login", "Auth")">Loggati</a> o <a href="@Url.Action("Register", "Auth")">Registrati</a></p>
+                <p class="login-links"><a href="@Url.Action("Login", "Auth")">Loggati</a> o <a href="@Url.Action("Register", "Auth")">Registrati</a></p>
               
             </div>
         </div>
@@ -74,10 +74,12 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
-            max-width: 350px;
+            max-width: 380px;
             background-color: white;
             color: black;
             padding: 8px 20px 3px 8px;
+            border-end-end-radius: 20px;
+            border-start-end-radius: 20px;
         }
 
         .info-img-container {
@@ -97,6 +99,11 @@
             height: 100%;
             width: 10px;
             background-color: var(--infoBg);
+        }
+
+        .login-links {
+            font-size: 1.5rem;
+            font-weight:bold;
         }
     </style>
 

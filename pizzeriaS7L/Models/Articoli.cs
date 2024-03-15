@@ -21,7 +21,7 @@ namespace pizzeriaS7L.Models
         [Required]
         public string Foto { get; set; }
 
-        public decimal Prezzo { get; set; }
+        public decimal Prezzo { get; set; } = 0;
 
         [Required]
         [StringLength(10)]

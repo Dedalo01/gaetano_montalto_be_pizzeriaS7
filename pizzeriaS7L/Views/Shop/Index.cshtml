@@ -4,11 +4,63 @@
 }
 
 
+<section>
+    <h2>Benvenuto allo shop</h2>
+    <p>Inserisci la Quantità desiderata e clicca su aggiungi! Troverai tutti i tuoi articoli nel Carrello.</p>
+
+    @if (TempData["AddSuccess"] != null)
+    {
+        <div class="alert alert-success">
+            <p>@TempData["AddSuccess"]</p>
+        </div>
+    }
+
+    <div class="d-flex flex-wrap">
+        @foreach (var articolo in Model)
+        {
+            <div class="pizza-card">
+                <div class=" outer-circle">
+                    <div class="inner-circle">
+
+
+                    </div>
+                </div>
+                <div class="pizza-body">
+
+                    <div class="pizza-img-container">
+                        <img src="/Assets/uploads/@articolo.Foto" />
+                    </div>
+
+                    <div class="pizza-content">
+                        <span>@articolo.Nome</span>
+                        <span>Tempo Consegna: @articolo.TempoConsegna min.</span>
+                        <span>€@articolo.Prezzo</span>
+
+                        <form action="@Url.Action("Index")" class="pizza-form" method="post">
+                            <label for="quantita">Quantità:</label>
+                            <input id="quantita" name="quantita" type="number" min="1" />
+                            <input type="hidden" name="articoloId" value="@articolo.Id" />
+                            <input type="hidden" name="articoloNome" value="@articolo.Nome" />
+
+                            <button>Aggiungi</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
 
 @section Styles {
     <style>
         :root {
             --max: 320px;
+        }
+
+        h2 {
+            font-size: 6rem;
         }
 
         .pizza-card {
@@ -57,8 +109,6 @@
             .pizza-body span {
                 display: block;
             }
-
-
 
                 .pizza-body span:first-of-type {
                     font-weight: bold;
@@ -114,57 +164,8 @@
                 transform: rotate(338deg);
             }
 
-            .pizza-content {
-                color:black;
-            }
+        .pizza-content {
+            color: black;
+        }
     </style>
 }
-
-<div>
-    <h2>Benvenuto allo shop</h2>
-
-    @if (TempData["AddSuccess"] != null)
-    {
-        <div class="alert alert-success">
-            <p>@TempData["AddSuccess"]</p>
-        </div>
-    }
-
-    <div class="d-flex flex-wrap">
-        @foreach (var articolo in Model)
-        {
-            <div class="pizza-card">
-                <div class=" outer-circle">
-                    <div class="inner-circle">
-
-
-                    </div>
-                </div>
-                <div class="pizza-body">
-
-                    <div class="pizza-img-container">
-                        <img src="/Assets/uploads/@articolo.Foto" />
-                    </div>
-
-                    <div class="pizza-content">
-                        <span>@articolo.Nome</span>
-                        <span>Tempo Consegna: @articolo.TempoConsegna min.</span>
-                        <span>€@articolo.Prezzo</span>
-
-                        <form action="@Url.Action("Index")" class="pizza-form" method="post">
-                            <label for="quantita">Quantità:</label>
-                            <input id="quantita" name="quantita" type="number" />
-                            <input type="hidden" name="articoloId" value="@articolo.Id" />
-                            <input type="hidden" name="articoloNome" value="@articolo.Nome" />
-
-                            <button>Aggiungi</button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        }
-    </div>
-
-</div>
-

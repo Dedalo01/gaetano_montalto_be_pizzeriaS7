@@ -7,37 +7,49 @@
 <h2>Carrello</h2>
 
 <section class="carrello">
-    <table class="table">
-        <thead>
-            <tr>
-            
-                <th scope="col">Articolo</th>
-                <th scope="col">Prezzo per 1</th>
-                <th scope="col">Quantità Ordinata</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var articolo in Model)
-            {
-                totale += articolo.Prezzo * articolo.Quantita;
 
+    @if (totale ==0)
+    {
+        <div class="empty-cart">
+            <p>Al momento il tuo Carrello è vuoto... vai su <a href="@Url.Action("Index", "Shop")">Articoli</a> per aggiungerne qualcuno!</p>
+        </div>
+    }
+    else
+    {
+
+        <table class="table">
+            <thead>
                 <tr>
-                    <th scope="row">@articolo.NomeArticolo</th>
-                
-                    <td>@articolo.Prezzo</td>
-                    <td>@articolo.Quantita</td>
-                </tr>
 
-                // TODO: FINIRE STILE QUI E IN ORDER
-            }
-        </tbody>
-    </table>
+                    <th scope="col">Articolo</th>
+                    <th scope="col">Prezzo per 1</th>
+                    <th scope="col">Quantità Ordinata</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var articolo in Model)
+                {
+                    totale += articolo.Prezzo * articolo.Quantita;
+
+                    <tr>
+                        <th scope="row">@articolo.NomeArticolo</th>
+
+                        <td>@articolo.Prezzo</td>
+                        <td>@articolo.Quantita</td>
+                    </tr>
+
+                    // TODO: FINIRE STILE QUI E IN ORDER
+                }
+            </tbody>
+        </table>
+    }
+
 
 </section>
 
 
-@if (Model != null)
+@if (Model != null && totale != 0)
 {
     <section class="cart-total">
         <p>Totale: <span>€@totale</span></p>
@@ -60,6 +72,11 @@
             margin-bottom: 40px;
         }
 
+        .empty-cart {
+            color:black;
+            font-size: 2rem;
+        }
+
         .cart-total {
             background-color: var(--aWhite);
             border-radius: 20px;
@@ -69,13 +86,13 @@
             width: 350px;
         }
 
-        .cart-total p{
-            font-size:2rem;
-            font-weight:bold;
-        }
+            .cart-total p {
+                font-size: 2rem;
+                font-weight: bold;
+            }
 
             .cart-total span {
                 color: #00CC3D;
             }
     </style>
-    }
+}

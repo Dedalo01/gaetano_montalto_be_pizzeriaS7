@@ -75,10 +75,18 @@ namespace pizzeriaS7L.Controllers
             var totalCompletedOrders = context.Ordini
                 .Count(o => o.DataOrdine >= startDate && o.DataOrdine < endDate && o.IsCompleto == "EVASO");
 
-            var totalRevenue = context.Ordini
-                .Where(o => o.DataOrdine >= startDate && o.DataOrdine < endDate && o.IsCompleto == "EVASO")
-                .SelectMany(o => o.OrdiniArticoli)
-                .Sum(oa => (oa.Articoli.Prezzo != null ? oa.Articoli.Prezzo : 0) * oa.Quantita);
+            decimal totalRevenue = 0;
+
+            var ordersInRange = context.Ordini
+    .Where(o => o.DataOrdine >= startDate && o.DataOrdine < endDate && o.IsCompleto == "EVASO");
+
+            if (ordersInRange.Any())
+            {
+                totalRevenue = context.Ordini
+                    .Where(o => o.DataOrdine >= startDate && o.DataOrdine < endDate && o.IsCompleto == "EVASO")
+                    .SelectMany(o => o.OrdiniArticoli)
+                    .Sum(oa => oa.Articoli.Prezzo * oa.Quantita);
+            }
 
             return Json(new { totalCompletedOrders, totalRevenue }, JsonRequestBehavior.AllowGet);
         }
