@@ -8,24 +8,6 @@
 
 <h2>Completa Ordine</h2>
 
-@*@if (Session["carrello"] != null)
-    {
-        <ul>
-
-            @foreach (var articolo in Session["carrello"] as List<pizzeriaS7L.Models.CartViewModel>)
-            {
-                totale += articolo.Prezzo * articolo.Quantita;
-
-                <li>@articolo.NomeArticolo - € @articolo.Prezzo - Qt. @articolo.Quantita </li>
-            }
-
-        </ul>
-
-        <div>
-            <p>Totale: €@totale</p>
-
-        </div>
-    }*@
 @if (Session["carrello"] != null)
 {
 
@@ -64,6 +46,8 @@
         <section class="expedition">
             @using (Html.BeginForm("Order"))
             {
+                @Html.AntiForgeryToken();
+
                 <div class="form-group">
                     @Html.LabelFor(m => m.IndirizzoSpedizione, "Indirizzo di Spedizione:")
                     @Html.EditorFor(m => m.IndirizzoSpedizione, new { htmlAttributes = new { @class = "form-control" } })

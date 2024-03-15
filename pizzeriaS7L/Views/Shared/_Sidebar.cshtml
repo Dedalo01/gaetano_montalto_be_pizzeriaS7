@@ -29,15 +29,18 @@
                 <div class="text">Articoli</div>
             </a>
         </li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li style="--bg:#2196f3;">
+                <a href="@Url.Action("Cart","Shop")">
+                    <div class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                    <div class="text">Carrello</div>
+                </a>
+            </li>
 
-        <li style="--bg:#2196f3;">
-            <a href="@Url.Action("Cart","Shop")">
-                <div class="icon">
-                    <ion-icon name="cart-outline"></ion-icon>
-                </div>
-                <div class="text">Carrello</div>
-            </a>
-        </li>
+        }
 
         <div class="bottom">
 
@@ -74,7 +77,6 @@
                     @Html.AntiForgeryToken()
                     <li style="--bg:#333;">
 
-
                         <div class="logoutBlock">
                             <button type="submit" id="logoutBtn">
                                 <div class="icon">
@@ -86,7 +88,7 @@
                     </li>
                 }
             }
-</nav>
+    </nav>
     </div>
     </ul>
     </div>

@@ -18,6 +18,7 @@ namespace pizzeriaS7L.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login([Bind(Include = "Email, Username, Password")] Utenti utente)
         {
             if (ModelState.IsValid)
@@ -60,6 +61,7 @@ namespace pizzeriaS7L.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Utenti utente)
         {
             if (ModelState.IsValid)

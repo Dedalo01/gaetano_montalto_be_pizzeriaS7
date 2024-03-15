@@ -40,6 +40,7 @@ namespace pizzeriaS7L.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddArticle(Articoli nuovoArticolo, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)

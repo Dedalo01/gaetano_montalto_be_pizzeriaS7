@@ -67,6 +67,7 @@ namespace pizzeriaS7L.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Order(Ordini nuovoOrdine)
         {
 

@@ -11,6 +11,7 @@
     <div class="form-container">
         @using (Html.BeginForm("AddArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken();
             <div class="form-group">
                 @Html.LabelFor(m => m.Nome)
                 @Html.EditorFor(m => m.Nome, new { htmlAttributes = new { @class = "form-control" } })
@@ -32,7 +33,7 @@
                 @Html.ValidationMessageFor(m => m.Ingredienti, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @*@Html.LabelFor(m => m.Foto, "Immagine")*@
+
                 <input type="file" name="Foto" id="Foto" />
             </div>
 
@@ -71,7 +72,7 @@
             .form-container ion-icon {
                 color: #ffa117;
                 font-size: 150px;
-                transform:rotate(295deg);
+                transform: rotate(295deg);
             }
 
             .form-container button {
@@ -90,18 +91,16 @@
                     color: black;
                 }
 
-       
 
-            /* Stile per il pulsante di selezione del file */
+
+        /* Stile per il pulsante di selezione del file */
         input[type="file"]::-webkit-file-upload-button {
-            background-color: #ffa117; /* Colore di sfondo del pulsante */
-            color: #fff; /* Colore del testo del pulsante */
+            background-color: #ffa117;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
         }
-
-          
     </style>
 }
