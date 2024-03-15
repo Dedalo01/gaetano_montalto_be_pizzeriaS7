@@ -13,12 +13,12 @@ Cosa si può fare?
 - login
 - registrarsi
   
-  come Admin:
+come Admin:
  - evadere ordini
  - aggiungere articoli (dal tasto + sulla sidebar)
  - scegliere una data nel sommario degli ordini per far partire due fetch contemporaneamente
    
-  come User (e come Admin):
+come User (e come Admin):
  - aggiungere quantità e articolo all'ordine
  - visionare il carrello
  - svuotare il carrello
